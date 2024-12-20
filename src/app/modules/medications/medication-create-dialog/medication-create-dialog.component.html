@@ -1,0 +1,77 @@
+<div class="title" matDialogTitle>
+  <span>Add Medication</span>
+  <button matDialogClose mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="row">
+      <mat-form-field class="w-100">
+        <mat-label>Medication name</mat-label>
+        <input formControlName="name" matInput>
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>Medication name is required!</mat-error>
+        }
+        @if (form.get('name')?.hasError('minlength')) {
+          <mat-error>Medication name must be at least 3 characters long!</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="w-70">
+        <mat-label>Dosage</mat-label>
+        <input type="number" formControlName="dosage" matInput>
+        @if (form.get('dosage')?.hasError('min')) {
+          <mat-error>Dosage must be a positive number!</mat-error>
+        }
+        @if (form.get('dosage')?.hasError('required')) {
+          <mat-error>Dosage is required!</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="w-30">
+        <mat-label>Unit</mat-label>
+        <mat-select formControlName="unit">
+          @for (d of dosageTypes; track d) {
+            <mat-option [value]="d">{{ d }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="frequency-container">
+      <div class="frequency-container_title">Frequency</div>
+      <div class="frequency-container_days">
+        <div class="frequency-container_days--title">Days</div>
+        <mat-button-toggle-group formControlName="days" [multiple]="true">
+          @for (day of daysOfWeek; track day) {
+            <mat-button-toggle [value]="day">{{ day }}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+      <div class="frequency-container_time">
+        <div class="frequency-container_time--title">Time</div>
+
+        <div formArrayName="times" class="frequency-container_time--inputs">
+          @for (time of times.controls; track time; let idx = $index) {
+            <mat-form-field>
+              <mat-label>Time</mat-label>
+              <input [formControl]="getControl(time)" matInput [matTimepicker]="picker">
+              <mat-timepicker interval="15min" #picker/>
+            </mat-form-field>
+          }
+          @if (!disableAddTime()) {
+            <span (click)="addTime()" class="add-time">
+            <mat-icon>add</mat-icon>
+              Add time
+             </span>
+          }
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matDialogClose mat-stroked-button>Cancel</button>
+  <button (click)="onAdd()" [disabled]="!form.valid" mat-stroked-button>Add</button>
+</mat-dialog-actions>

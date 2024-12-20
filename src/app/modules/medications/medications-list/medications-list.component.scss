@@ -1,0 +1,17 @@
+@use "mixins";
+@use "variables";
+
+table {
+  @include mixins.standardCardShadow();
+  width: 100%;
+
+  tr:nth-child(even) {
+    background-color: variables.$hover-blue;
+  }
+}
+
+.mat-mdc-header-row {
+  position: sticky;
+  top: 0;
+  background-color: variables.$hover-blue !important;
+}

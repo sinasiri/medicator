@@ -1,0 +1,88 @@
+@use "variables" as variables;
+
+.title {
+  button {
+    float: right;
+  }
+}
+
+form {
+  .row {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .w-70 {
+      width: 70%;
+    }
+
+    .w-30 {
+      width: 30%;
+    }
+  }
+
+  .frequency-container {
+    position: relative;
+    margin-top: 20px;
+    border-radius: 8px;
+    height: 300px;
+    border: 1px solid variables.$hover;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    &_title {
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background-color: white;
+    }
+
+    &_days {
+      margin-top: 20px;
+
+      &--title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+    }
+
+    &_time {
+      margin-top: 30px;
+
+      mat-form-field {
+        width: 130px;
+      }
+
+      &--title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &--inputs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .add-time {
+        width: 85px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-decoration: underline;
+        color: variables.$link;
+        font-size: 14px;
+        user-select: none;
+
+        &-disabled {
+          color: variables.$hover;
+        }
+      }
+    }
+  }
+}

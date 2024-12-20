@@ -1,0 +1,14 @@
+<div class="medication-layout-container">
+  <div class="medication-layout-container_title">
+    Medicator
+  </div>
+
+  <div class="medication-layout-container_search-bar">
+    <app-medication-searchbar (searchRequested)="onSearch($event)"/>
+    <button mat-stroked-button (click)="onAdd()"> Add medication</button>
+  </div>
+
+  <div class="medication-layout-container_table">
+    <app-medications-list [medications]="medications$ | async" [searchParam]="searchParam()"/>
+  </div>
+</div>
