@@ -27,7 +27,6 @@ export class MedicationsListComponent implements OnChanges, OnInit {
     }
 
     if (changes['medications'] && !!changes['medications'].currentValue) {
-      console.log(changes['medications'].currentValue)
       this.dataSource.data = changes['medications'].currentValue;
     }
   }

@@ -1,12 +1,21 @@
 @use "mixins";
 @use "variables";
 
-table {
+.table-container {
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
   @include mixins.standardCardShadow();
-  width: 100%;
+}
 
+table {
   tr:nth-child(even) {
     background-color: variables.$hover-blue;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

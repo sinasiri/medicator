@@ -29,3 +29,9 @@
     }
   }
 }
+
+@include mixins.for-phone-only(){
+  .medication-layout-container{
+    width: 90% !important;
+  }
+}

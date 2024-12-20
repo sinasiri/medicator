@@ -10,3 +10,8 @@
   background-repeat: repeat-y;
   background-size: cover;
 }
+@mixin for-phone-only {
+  @media (max-width: 1100px) {
+    @content;
+  }
+}
