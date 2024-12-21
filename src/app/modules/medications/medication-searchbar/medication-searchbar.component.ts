@@ -3,7 +3,6 @@ import {MatFormField, MatLabel, MatPrefix} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {debounceTime} from 'rxjs';
 
 @Component({
   selector: 'app-medication-searchbar',
@@ -22,7 +21,7 @@ import {debounceTime} from 'rxjs';
         Search
       </mat-label>
       <mat-icon matPrefix>search</mat-icon>
-      <input [formControl]="searchControl" matInput>
+      <input data-testid="search-input" [formControl]="searchControl" matInput>
     </mat-form-field>
   `,
   styles: `
@@ -42,7 +41,6 @@ export class MedicationSearchbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchControl.valueChanges
-      .pipe(debounceTime(100))
       .subscribe((value) => this.searchRequested.emit(value));
   }
 }

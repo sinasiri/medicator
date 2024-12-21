@@ -28,7 +28,7 @@ export class MedicationsComponent implements OnInit {
   onSearch = (searchParam: string) => this.searchParam.set(searchParam);
 
   onAdd = () => {
-    const dialog = this.#dialog.open(MedicationCreateDialogComponent);
+    const dialog = this.#dialog.open(MedicationCreateDialogComponent, {minWidth: '50vw'});
     dialog.afterClosed().subscribe((res: Medication | null) => {
       if (res) {
         this.#medicationStore.dispatch(fromMedications.addMedication({data: {...res, lastUpdated: new Date()}}));

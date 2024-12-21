@@ -34,7 +34,7 @@ form {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    overflow-y: auto;
+    width: max-content;
 
     &_title {
       position: absolute;
